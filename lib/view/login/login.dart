@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:granregister/controller/authprovider.dart';
+import 'package:granregister/view/homepage/home.dart';
 import 'package:granregister/view/login/signup.dart';
 import 'package:provider/provider.dart';
 
@@ -17,8 +18,14 @@ class _loginState extends State<login> {
   TextEditingController passwordcontroller = TextEditingController();
 
   void logeduser() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailcontroller.text, password: passwordcontroller.text);
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: emailcontroller.text, password: passwordcontroller.text)
+        .then((value) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ));
+    });
   }
 
   @override

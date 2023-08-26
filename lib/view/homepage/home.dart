@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:granregister/controller/authprovider.dart';
+import 'package:granregister/view/login/login.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,6 +26,9 @@ class HomePage extends StatelessWidget {
           FloatingActionButton(
             onPressed: () {
               logoutuser();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => login(),
+              ));
             },
             child: Icon(
               Icons.arrow_forward,

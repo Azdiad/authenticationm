@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:granregister/controller/authprovider.dart';
-import 'package:granregister/view/homepage/home.dart';
 import 'package:granregister/view/login/auth.dart';
 import 'package:granregister/view/login/login.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AuthState(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
+        ),
+      ],
       child: MaterialApp(
         title: 'fire Sign',
         debugShowCheckedModeBanner: false,
@@ -28,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         home: AuthPage(),
         // home: login(),
-        // home: HomePage(),
+        // home: homes(),
       ),
     );
   }
