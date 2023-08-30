@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:granregister/view/login/signup.dart';
 
 class AuthState extends ChangeNotifier {
   bool isLoggedIn = false;

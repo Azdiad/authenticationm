@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:granregister/controller/authprovider.dart';
 import 'package:granregister/view/login/auth.dart';
-import 'package:granregister/view/login/login.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

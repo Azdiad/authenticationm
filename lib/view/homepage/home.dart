@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:granregister/controller/authprovider.dart';
 import 'package:granregister/view/login/login.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser!;
@@ -12,31 +10,56 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authState = Provider.of<AuthState>(context);
-
-    return Container(
-      child: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Verified as :   ' + user.email!,
-            style: TextStyle(fontSize: 25),
-          ),
-          FloatingActionButton(
+    return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.indigoAccent, actions: [
+        IconButton(
+            color: Colors.black,
             onPressed: () {
               logoutuser();
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => login(),
               ));
             },
-            child: Icon(
-              Icons.arrow_forward,
-              size: 30,
-            ),
-          ),
-        ],
-      )),
+            icon: Icon(Icons.logout))
+      ]),
+      body: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                Colors.blueAccent,
+                Colors.purpleAccent,
+              ],
+                  stops: [
+                0.0,
+                1.0
+              ],
+                  begin: FractionalOffset.topCenter,
+                  end: FractionalOffset.bottomCenter,
+                  tileMode: TileMode.repeated)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Verified as :   ' + user.email!,
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Welcome ',
+                style: TextStyle(fontSize: 30),
+              ),
+              Container(
+                width: 200,
+                child: FloatingActionButton(
+                  onPressed: () {},
+                  child: Text('Click For Settings'),
+                ),
+              )
+            ],
+          )),
     );
   }
 }
